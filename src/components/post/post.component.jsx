@@ -46,7 +46,38 @@ const Post = ({ post, authToken, authTokenType, username }) => {
     }
 
     const postComment = (event) => {
+        event?.preventDefault()
 
+        const json_string = JSON.stringify({
+            'username': username,
+            'user_comment': newComment,
+            'post_id': post.id,
+        })
+
+        const requestOptions = {
+            method: 'POST',
+            headers: new Headers({
+                'Authorization': authTokenType +  ' ' + authToken,
+                'Content-Type': 'application/json'
+            }),
+            body: json_string
+        }
+
+        fetch(BASE_URL + 'comment', requestOptions)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+            })
+            .then(data => {
+                window.location.reload()
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(() => {
+                setNewComment('')
+            })
     }
 
     return (
