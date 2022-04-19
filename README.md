@@ -1,4 +1,5 @@
-
+Go to https://github.com/sumitdadwal/instagram-clone-backend before cloning this project.
+Once done with the backend run the this code using the instructions below.
 
 
 # Getting Started with Create React App
